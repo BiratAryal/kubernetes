@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nginx-volume-01
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: nfs-dynamic-provisioning
+  hostPath:
+    path: /home/turboscript/nginx
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nginx-configuration-volume-01
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: nginx-configuration-dynamic-provisioning
+  hostPath:
+    path: /home//config

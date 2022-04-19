@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  spec:
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          app: nginx-deployment
+      spec:
+        containers:
+          - name: nginx
+            image: nginx:stable-alpine
+            resources:
+              limits:
+                cpu: 40m
+                memory: 50M
+              requests:
+                cpu: "20m"
+                memory: "30M"
+            ports:
+            - name: nginx-port
+              containerPort: 8080
+            volumeMounts:
+              - name:  html
+                mountPath:  /usr/share/nginx/html
+              - name: configuration
+                mountPath: /etc/nginx/
+        volumes:
+          - name:  html
+            persistentVolumeClaim:
+              claimName: nginx-pvc-01
+          - name: configuration
+            persistentVolumeClaim:
+              claimName: nginx-configuration-pvc-01
+            restartPolicy: Always

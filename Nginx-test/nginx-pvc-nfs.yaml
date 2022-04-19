@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+   name: nginx-pvc-nfs
+spec:
+   storageClassName: mannual
+   accessModes:
+      - ReadWriteMany
+   resources:
+      requests:
+         storage: 500Mi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+   name: nginx-logclaim-nfs
+spec:
+   storageClassName: logging
+   accessModes:
+      - ReadWriteMany
+   resources:
+      requests:
+         storage: 500Mi
+---
+#apiVersion: v1
+#kind: PersistentVolumeClaim
+#metadata:
+#   name: nginx-config-nfs
+#spec:
+#   storageClassName: config
+#   accessModes:
+#      - ReadWriteMany
+#   resources:
+#      requests:
+#         storage: 500Mi
+
